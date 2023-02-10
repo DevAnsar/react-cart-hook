@@ -1,3 +1,4 @@
 import Counter from './components/Counter'
+import cartProvider from './providers/cartProvider'
 
-export { Counter }
+export { Counter, cartProvider }
