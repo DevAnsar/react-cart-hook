@@ -1,42 +1,34 @@
 import React from 'react'
-import { createContext, useState, PropsWithChildren } from "react";
+import { createContext, useState, PropsWithChildren } from 'react'
 
 interface Cart {
-    user_id: number,
-    name: string,
-    avatar: string,
-    invonce: Array<Purchase> | null
+  user_id: number
+  name: string
+  avatar: string
+  invonce: Array<Purchase> | null
 }
 
 interface Item {
-    id: number,
-    title: string,
-    image: string | null,
+  id: number
+  title: string
+  image: string | null
 }
 interface Purchase extends Item {
-    quantity: number
+  quantity: number
 }
 
-type CartContext = CartProvider | null;
+type CartContext = CartProviderType | null
 
-interface CartProvider {
-    cart: Cart | null
-};
-
-
-export const CartContext = createContext<CartProvider | null>(null);
-
-
-
-const cartProvider = ({ children }: PropsWithChildren) => {
-
-    const [cart, dispatch] = useState(null);
-
-    return (
-        <CartContext.Provider value={{ cart }}>
-            {children}
-        </CartContext.Provider>
-    )
+interface CartProviderType {
+  cart: Cart | null
 }
 
-export default cartProvider;
+export const CartContext = createContext<CartProviderType | null>(null)
+
+const CartProvider = ({ children }: PropsWithChildren) => {
+  const [cart] = useState(null)
+
+  return <CartContext.Provider value={{ cart }}>{children}</CartContext.Provider>
+}
+
+export default CartProvider
