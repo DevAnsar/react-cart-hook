@@ -18,14 +18,31 @@
 
     npm install react-cart-hook
 
-### Quickstart
+### Add provider to top of your component tree
 
 ```jsx
-import { Counter } from 'react-cart-hook';
+import { CartProvider } from 'react-cart-hook';
 function App() {
   return (
+    <CartProvider>
+      {children}
+    </CartProvider>
+  );
+}
+```
+
+### Simply you can import useCart hook everywere
+
+```jsx
+import { useCart } from 'react-cart-hook';
+function MyExampleComponent() {
+
+
+  const { cart , addToCart } = useCart();
+
+  return (
     <div>
-      <Counter />
+      {cart.invonce.map(product=> ...)}
     </div>
   );
 }
