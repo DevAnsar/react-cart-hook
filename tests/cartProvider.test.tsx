@@ -38,7 +38,7 @@ test('CartContext composes full name from first, last', () => {
   const providerProps: CartContextType = {
     basket: [{ ...testProduct, quantity: 1 } as Purchase],
     user: userTest,
-    addToCart: () => console.log('this is a test'),
+    addToBasket: () => console.log('this is a test'),
   }
 
   customRender(
