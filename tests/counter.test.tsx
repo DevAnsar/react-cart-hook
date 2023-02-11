@@ -13,6 +13,10 @@ describe('Counter render', () => {
 
 describe('CartProvider render', () => {
   it('renders without crashing', () => {
-    render(<CartProvider />)
+    render(
+      <CartProvider>
+        <div>test</div>
+      </CartProvider>,
+    )
   })
 })
