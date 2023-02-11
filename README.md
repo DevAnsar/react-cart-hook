@@ -37,12 +37,11 @@ function App() {
 import { useCart } from 'react-cart-hook';
 function MyExampleComponent() {
 
-
-  const { cart , addToCart } = useCart();
+  const { basket , addToCart } = useCart();
 
   return (
     <div>
-      {cart.invonce.map(product=> ...)}
+      {basket.map(product=> ...)}
     </div>
   );
 }
