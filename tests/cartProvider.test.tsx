@@ -4,8 +4,9 @@ import '@testing-library/jest-dom'
 
 import { CartProvider, CartContext } from '../src'
 import { CartContextType, Product, Purchase, User } from '../src/types'
+import { basketReducer, addToBasketAction } from '../src/reducers'
 
-const idCreator = () => Math.random() * 100000
+import { idCreator, purchaseFactory, productFactory } from '../src/factories'
 
 describe('CartProvider render', () => {
   it('renders without crashing', () => {
@@ -27,7 +28,7 @@ test('CartContext composes full name from first, last', () => {
     id: productId,
     amount: '1000',
     title: `test product 1 - [${productId}]`,
-    image: null,
+    image: undefined,
   }
 
   const userTest: User = {
@@ -38,7 +39,9 @@ test('CartContext composes full name from first, last', () => {
   const providerProps: CartContextType = {
     basket: [{ ...testProduct, quantity: 1 } as Purchase],
     user: userTest,
-    addToBasket: () => console.log('this is a test'),
+    addToBasket: () => undefined,
+    removeToBasket: () => undefined,
+    deleteToBasket: () => undefined,
   }
 
   customRender(
@@ -56,4 +59,18 @@ test('CartContext composes full name from first, last', () => {
     {},
   )
   expect(screen.getByText(/^name:/).textContent).toBe('name: Ansar Mirzayi')
+})
+
+test('test basket reducer', () => {
+  const product1: Product = productFactory({})
+  const product2: Product = productFactory({ id: 1234, title: 'product-test' })
+
+  const testPurchase1: Purchase = purchaseFactory(product1)
+  const testPurchase2: Purchase = purchaseFactory(product2, 3)
+
+  let newState = basketReducer([], addToBasketAction(testPurchase1))
+  newState = basketReducer(newState, addToBasketAction(testPurchase1))
+  newState = basketReducer(newState, addToBasketAction(testPurchase2))
+
+  expect(newState.length).toBe(2)
 })

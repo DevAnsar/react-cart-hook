@@ -1,11 +1,12 @@
 {
   "name": "react-cart-hook",
-  "version": "0.1.6",
+  "version": "0.2.0",
   "description": "This is a simple, hook based cart package for react",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/esm/index.d.ts",
   "scripts": {
+    "start": "parcel src/index.html --port 3000",
     "build": "npm run build:esm && npm run build:cjs",
     "build:esm": "tsc",
     "build:cjs": "tsc --module commonjs --outDir dist/cjs",
@@ -39,7 +40,9 @@
     "jest": "^29.4.2",
     "jest-canvas-mock": "^2.4.0",
     "jest-environment-jsdom": "^29.4.2",
+    "parcel": "^2.8.3",
     "prettier": "^2.8.4",
+    "process": "^0.11.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "ts-jest": "^29.0.5",
