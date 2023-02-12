@@ -104,4 +104,12 @@ export const clearBasketAction = (): ActionType => {
     type: CLEAR_BASKET,
   }
 }
+
+export const calculateTotalCost = (basket: [Purchase]): number => {
+  let total_cost = 0
+  basket.forEach((i: Purchase) => {
+    total_cost += i.amount * i.quantity
+  })
+  return total_cost
+}
 export { basketReducer }

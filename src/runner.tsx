@@ -5,7 +5,7 @@ import { fakePurchaseFactory } from './factories'
 import { Purchase } from './types'
 
 const App = () => {
-  const { basket, addToBasket, removeToBasket, deleteToBasket, clearBasket } = useCart()
+  const { basket, addToBasket, removeToBasket, deleteToBasket, clearBasket, totalCost } = useCart()
   return (
     <main>
       <table>
@@ -39,6 +39,7 @@ const App = () => {
         </tbody>
       </table>
 
+      <h3>total cost : {totalCost}</h3>
       <button onClick={() => addToBasket(fakePurchaseFactory(), 2)}>add new purchse</button>
       <button onClick={() => clearBasket()}>clear basket</button>
     </main>

@@ -39,6 +39,7 @@ test('CartContext composes full name from first, last', () => {
     removeToBasket: () => undefined,
     deleteToBasket: () => undefined,
     clearBasket: () => undefined,
+    totalCost: 0,
   }
 
   customRender(

@@ -7,6 +7,7 @@ interface CartContextType {
   removeToBasket: (product_id: number, quantity?: number) => void
   deleteToBasket: (product_id: number) => void
   clearBasket: () => void
+  totalCost: number
 }
 
 export { CartContextType }

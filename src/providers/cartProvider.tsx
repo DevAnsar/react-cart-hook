@@ -1,5 +1,5 @@
 import React from 'react'
-import { createContext, useReducer, PropsWithChildren, useState } from 'react'
+import { createContext, useReducer, PropsWithChildren, useState, useEffect } from 'react'
 import { CartContextType, Product, User } from './../types'
 import {
   basketReducer,
@@ -7,6 +7,7 @@ import {
   removeToBasketAction,
   deleteToBasketAction,
   clearBasketAction,
+  calculateTotalCost,
 } from './../reducers'
 
 const CartContext = createContext<CartContextType>({
@@ -16,11 +17,17 @@ const CartContext = createContext<CartContextType>({
   removeToBasket: () => undefined,
   deleteToBasket: () => undefined,
   clearBasket: () => undefined,
+  totalCost: 0,
 })
 
 const CartProvider = ({ children }: PropsWithChildren) => {
   const [basket, basketDispath] = useReducer(basketReducer, [])
   const [user] = useState<User | null>(null)
+  const [totalCost, setTotalCost] = useState<number>(0)
+
+  useEffect(() => {
+    setTotalCost(calculateTotalCost(basket))
+  }, [basket])
 
   const addToBasket = (product: Product, quantity = 1) => {
     basketDispath(addToBasketAction(product, quantity))
@@ -39,7 +46,7 @@ const CartProvider = ({ children }: PropsWithChildren) => {
   }
 
   return (
-    <CartContext.Provider value={{ basket, user, addToBasket, removeToBasket, deleteToBasket, clearBasket }}>
+    <CartContext.Provider value={{ basket, user, addToBasket, removeToBasket, deleteToBasket, clearBasket, totalCost }}>
       {children}
     </CartContext.Provider>
   )

@@ -142,6 +142,19 @@ const { clearBasket } = useCart();
   );
 ```
 
+#### 🔗 `totalCost`
+
+The total cost of all the items in the basket.
+
+- `totalCost` is a number
+
+```tsx
+const { totalCost } = useCart();
+  return (
+    <p>The total cost of the cart is: {totalCost}</p>
+  );
+```
+
 [npm-url]: https://www.npmjs.com/package/react-cart-hook
 [npm-image]: https://img.shields.io/npm/v/react-cart-hook
 [github-license]: https://img.shields.io/github/license/DevAnsar/react-cart-hook

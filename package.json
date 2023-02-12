@@ -1,6 +1,6 @@
 {
   "name": "react-cart-hook",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "This is a simple, hook based cart package for react",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
