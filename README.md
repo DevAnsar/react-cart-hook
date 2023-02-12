@@ -131,6 +131,17 @@ const { removeToBasket } = useCart();
   );
 ```
 
+#### 🔗 `clearBasket()`
+
+`clearBasket()` empties the basket, and resets the state.
+
+```tsx
+const { clearBasket } = useCart();
+  return (
+    <button onClick={()=>clearBasket()}>Empty the basket!</button>
+  );
+```
+
 [npm-url]: https://www.npmjs.com/package/react-cart-hook
 [npm-image]: https://img.shields.io/npm/v/react-cart-hook
 [github-license]: https://img.shields.io/github/license/DevAnsar/react-cart-hook

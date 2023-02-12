@@ -1,4 +1,4 @@
-import { Product, Purchase } from '../types'
+import { Product, Purchase, User } from '../types'
 
 export const idCreator = () => Math.random() * 100000
 export const titleCratorr = () => `anonymous product`
@@ -19,6 +19,14 @@ export const fakePurchaseFactory = (): Purchase => {
   const product: Product = fakeProductFactory()
   const testPurchase: Purchase = { ...product, quantity: 1 }
   return testPurchase
+}
+
+export const fakeUserFactory = (): User => {
+  return {
+    name: 'Jon Doe',
+    avatar: '/image.png',
+    id: idCreator(),
+  }
 }
 
 export const productFactory = (item: any): Product => {

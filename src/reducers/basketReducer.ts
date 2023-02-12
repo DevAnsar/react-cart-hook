@@ -1,8 +1,9 @@
-import { BasketReducerAction, Product, Purchase } from '../types'
+import { BasketReducerAction, ActionType, Product, Purchase } from '../types'
 
 export const ADD_ITEM = 'ADD_ITEM'
 export const REMOVE_ITEM = 'REMOVE_ITEM'
 export const DELETE_ITEM = 'DELETE_ITEM'
+export const CLEAR_BASKET = 'CLEAR_BASKET'
 
 import { purchaseFactory } from './../factories'
 type BasketAction = BasketReducerAction<{ product: Product; quantity: number }>
@@ -58,6 +59,10 @@ function basketReducer(state: any, action: any) {
       }
       return [...state]
     }
+
+    case CLEAR_BASKET: {
+      return []
+    }
   }
   throw Error('Unknown action: ' + action.type)
 }
@@ -94,4 +99,9 @@ export const deleteToBasketAction = (product_id: number): BasketReducerAction<{ 
   }
 }
 
+export const clearBasketAction = (): ActionType => {
+  return {
+    type: CLEAR_BASKET,
+  }
+}
 export { basketReducer }

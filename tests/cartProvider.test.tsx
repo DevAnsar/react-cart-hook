@@ -6,7 +6,7 @@ import { CartProvider, CartContext } from '../src'
 import { CartContextType, Product, Purchase, User } from '../src/types'
 import { basketReducer, addToBasketAction } from '../src/reducers'
 
-import { idCreator, purchaseFactory, productFactory } from '../src/factories'
+import { idCreator, purchaseFactory, productFactory, fakeUserFactory } from '../src/factories'
 
 describe('CartProvider render', () => {
   it('renders without crashing', () => {
@@ -31,17 +31,14 @@ test('CartContext composes full name from first, last', () => {
     image: undefined,
   }
 
-  const userTest: User = {
-    name: 'Ansar Mirzayi',
-    avatar: '/ansar.png',
-    id: idCreator(),
-  }
+  const userTest: User = fakeUserFactory()
   const providerProps: CartContextType = {
     basket: [{ ...testProduct, quantity: 1 } as Purchase],
     user: userTest,
     addToBasket: () => undefined,
     removeToBasket: () => undefined,
     deleteToBasket: () => undefined,
+    clearBasket: () => undefined,
   }
 
   customRender(
@@ -58,7 +55,7 @@ test('CartContext composes full name from first, last', () => {
     providerProps,
     {},
   )
-  expect(screen.getByText(/^name:/).textContent).toBe('name: Ansar Mirzayi')
+  expect(screen.getByText(/^name:/).textContent).toBe('name: Jon Doe')
 })
 
 test('test basket reducer', () => {

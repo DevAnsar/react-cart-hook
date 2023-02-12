@@ -1,7 +1,13 @@
 import React from 'react'
 import { createContext, useReducer, PropsWithChildren, useState } from 'react'
 import { CartContextType, Product, User } from './../types'
-import { basketReducer, addToBasketAction, removeToBasketAction, deleteToBasketAction } from './../reducers'
+import {
+  basketReducer,
+  addToBasketAction,
+  removeToBasketAction,
+  deleteToBasketAction,
+  clearBasketAction,
+} from './../reducers'
 
 const CartContext = createContext<CartContextType>({
   basket: [],
@@ -9,6 +15,7 @@ const CartContext = createContext<CartContextType>({
   addToBasket: () => undefined,
   removeToBasket: () => undefined,
   deleteToBasket: () => undefined,
+  clearBasket: () => undefined,
 })
 
 const CartProvider = ({ children }: PropsWithChildren) => {
@@ -27,8 +34,12 @@ const CartProvider = ({ children }: PropsWithChildren) => {
     basketDispath(deleteToBasketAction(product_id))
   }
 
+  const clearBasket = () => {
+    basketDispath(clearBasketAction())
+  }
+
   return (
-    <CartContext.Provider value={{ basket, user, addToBasket, removeToBasket, deleteToBasket }}>
+    <CartContext.Provider value={{ basket, user, addToBasket, removeToBasket, deleteToBasket, clearBasket }}>
       {children}
     </CartContext.Provider>
   )
