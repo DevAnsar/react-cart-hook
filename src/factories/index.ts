@@ -8,7 +8,7 @@ export const fakeProductFactory = (): Product => {
   const productId = idCreator()
   const testProduct: Product = {
     id: productId,
-    amount: String(productId),
+    amount: productId,
     title: `test product 1 - [${productId}]`,
     image: `/${productId}.png`,
   }

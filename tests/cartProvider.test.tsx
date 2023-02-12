@@ -26,7 +26,7 @@ test('CartContext composes full name from first, last', () => {
   const productId = idCreator()
   const testProduct: Product = {
     id: productId,
-    amount: '1000',
+    amount: 1000,
     title: `test product 1 - [${productId}]`,
     image: undefined,
   }
